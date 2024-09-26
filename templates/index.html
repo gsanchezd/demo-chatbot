@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Flask con ChatGPT</title>
+</head>
+<body>
+    <h1>Conversación con ChatGPT</h1>
+    <form method="POST" action="/">
+        <label for="textarea">Escribe algo para enviar a ChatGPT:</label>
+        <br>
+        <textarea id="textarea" name="textarea" rows="5" cols="30"></textarea>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if conversation %}
+    <h2>Historial de conversación:</h2>
+    <div style="border: 1px solid #333; padding: 10px; background-color: #f9f9f9;">
+        {% for message in conversation %}
+            <p><strong>{{ message.role }}:</strong> {{ message.content }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="/reset">
+        <button type="submit">Reiniciar Conversación</button>
+    </form>
+</body>
+</html>
